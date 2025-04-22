@@ -430,8 +430,7 @@ func (sc *Subcommand) AttachSubcommand(newSC *Subcommand, relativePosition int) 
 // add is a "generic" to add flags of any type. Checks the supplied parent
 // parser to ensure that the user isn't setting version or help flags that
 // conflict with the built-in help and version flag behavior.
-func (sc *Subcommand) add(assignmentVar interface{}, shortName string, longName string, description string) {
-
+func (sc *Subcommand) add(assignmentVar interface{}, shortName string, longName string, description string, parse func(string) error) {
 	// if the flag is already used, throw an error
 	for _, existingFlag := range sc.Flags {
 		if longName != "" && existingFlag.LongName == longName {
@@ -447,43 +446,44 @@ func (sc *Subcommand) add(assignmentVar interface{}, shortName string, longName 
 		ShortName:     shortName,
 		LongName:      longName,
 		Description:   description,
+		Parse:         parse,
 	}
 	sc.Flags = append(sc.Flags, &newFlag)
 }
 
 // String adds a new string flag
 func (sc *Subcommand) String(assignmentVar *string, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // StringSlice adds a new slice of strings flag
 // Specify the flag multiple times to fill the slice
 func (sc *Subcommand) StringSlice(assignmentVar *[]string, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Bool adds a new bool flag
 func (sc *Subcommand) Bool(assignmentVar *bool, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // BoolSlice adds a new slice of bools flag
 // Specify the flag multiple times to fill the slice
 func (sc *Subcommand) BoolSlice(assignmentVar *[]bool, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // ByteSlice adds a new slice of bytes flag
 // Specify the flag multiple times to fill the slice.  Takes hex as input.
 func (sc *Subcommand) ByteSlice(assignmentVar *[]byte, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Duration adds a new time.Duration flag.
 // Input format is described in time.ParseDuration().
 // Example values: 1h, 1h50m, 32s
 func (sc *Subcommand) Duration(assignmentVar *time.Duration, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // DurationSlice adds a new time.Duration flag.
@@ -491,172 +491,172 @@ func (sc *Subcommand) Duration(assignmentVar *time.Duration, shortName string, l
 // Example values: 1h, 1h50m, 32s
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) DurationSlice(assignmentVar *[]time.Duration, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Float32 adds a new float32 flag.
 func (sc *Subcommand) Float32(assignmentVar *float32, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Float32Slice adds a new float32 flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) Float32Slice(assignmentVar *[]float32, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Float64 adds a new float64 flag.
 func (sc *Subcommand) Float64(assignmentVar *float64, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Float64Slice adds a new float64 flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) Float64Slice(assignmentVar *[]float64, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int adds a new int flag
 func (sc *Subcommand) Int(assignmentVar *int, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // IntSlice adds a new int slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) IntSlice(assignmentVar *[]int, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt adds a new uint flag
 func (sc *Subcommand) UInt(assignmentVar *uint, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UIntSlice adds a new uint slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) UIntSlice(assignmentVar *[]uint, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt64 adds a new uint64 flag
 func (sc *Subcommand) UInt64(assignmentVar *uint64, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt64Slice adds a new uint64 slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) UInt64Slice(assignmentVar *[]uint64, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt32 adds a new uint32 flag
 func (sc *Subcommand) UInt32(assignmentVar *uint32, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt32Slice adds a new uint32 slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) UInt32Slice(assignmentVar *[]uint32, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt16 adds a new uint16 flag
 func (sc *Subcommand) UInt16(assignmentVar *uint16, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt16Slice adds a new uint16 slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) UInt16Slice(assignmentVar *[]uint16, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt8 adds a new uint8 flag
 func (sc *Subcommand) UInt8(assignmentVar *uint8, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt8Slice adds a new uint8 slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) UInt8Slice(assignmentVar *[]uint8, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int64 adds a new int64 flag.
 func (sc *Subcommand) Int64(assignmentVar *int64, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int64Slice adds a new int64 slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) Int64Slice(assignmentVar *[]int64, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int32 adds a new int32 flag
 func (sc *Subcommand) Int32(assignmentVar *int32, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int32Slice adds a new int32 slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) Int32Slice(assignmentVar *[]int32, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int16 adds a new int16 flag
 func (sc *Subcommand) Int16(assignmentVar *int16, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int16Slice adds a new int16 slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) Int16Slice(assignmentVar *[]int16, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int8 adds a new int8 flag
 func (sc *Subcommand) Int8(assignmentVar *int8, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int8Slice adds a new int8 slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) Int8Slice(assignmentVar *[]int8, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // IP adds a new net.IP flag.
 func (sc *Subcommand) IP(assignmentVar *net.IP, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // IPSlice adds a new int8 slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) IPSlice(assignmentVar *[]net.IP, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // HardwareAddr adds a new net.HardwareAddr flag.
 func (sc *Subcommand) HardwareAddr(assignmentVar *net.HardwareAddr, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // HardwareAddrSlice adds a new net.HardwareAddr slice flag.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) HardwareAddrSlice(assignmentVar *[]net.HardwareAddr, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // IPMask adds a new net.IPMask flag. IPv4 Only.
 func (sc *Subcommand) IPMask(assignmentVar *net.IPMask, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // IPMaskSlice adds a new net.HardwareAddr slice flag. IPv4 only.
 // Specify the flag multiple times to fill the slice.
 func (sc *Subcommand) IPMaskSlice(assignmentVar *[]net.IPMask, shortName string, longName string, description string) {
-	sc.add(assignmentVar, shortName, longName, description)
+	sc.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // AddPositionalValue adds a positional value to the subcommand.  the

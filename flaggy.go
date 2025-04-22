@@ -80,37 +80,37 @@ func ParseArgs(args []string) {
 
 // String adds a new string flag
 func String(assignmentVar *string, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // StringSlice adds a new slice of strings flag
 // Specify the flag multiple times to fill the slice
 func StringSlice(assignmentVar *[]string, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Bool adds a new bool flag
 func Bool(assignmentVar *bool, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // BoolSlice adds a new slice of bools flag
 // Specify the flag multiple times to fill the slice
 func BoolSlice(assignmentVar *[]bool, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // ByteSlice adds a new slice of bytes flag
 // Specify the flag multiple times to fill the slice.  Takes hex as input.
 func ByteSlice(assignmentVar *[]byte, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Duration adds a new time.Duration flag.
 // Input format is described in time.ParseDuration().
 // Example values: 1h, 1h50m, 32s
 func Duration(assignmentVar *time.Duration, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // DurationSlice adds a new time.Duration flag.
@@ -118,172 +118,172 @@ func Duration(assignmentVar *time.Duration, shortName string, longName string, d
 // Example values: 1h, 1h50m, 32s
 // Specify the flag multiple times to fill the slice.
 func DurationSlice(assignmentVar *[]time.Duration, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Float32 adds a new float32 flag.
 func Float32(assignmentVar *float32, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Float32Slice adds a new float32 flag.
 // Specify the flag multiple times to fill the slice.
 func Float32Slice(assignmentVar *[]float32, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Float64 adds a new float64 flag.
 func Float64(assignmentVar *float64, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Float64Slice adds a new float64 flag.
 // Specify the flag multiple times to fill the slice.
 func Float64Slice(assignmentVar *[]float64, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int adds a new int flag
 func Int(assignmentVar *int, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // IntSlice adds a new int slice flag.
 // Specify the flag multiple times to fill the slice.
 func IntSlice(assignmentVar *[]int, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt adds a new uint flag
 func UInt(assignmentVar *uint, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UIntSlice adds a new uint slice flag.
 // Specify the flag multiple times to fill the slice.
 func UIntSlice(assignmentVar *[]uint, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt64 adds a new uint64 flag
 func UInt64(assignmentVar *uint64, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt64Slice adds a new uint64 slice flag.
 // Specify the flag multiple times to fill the slice.
 func UInt64Slice(assignmentVar *[]uint64, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt32 adds a new uint32 flag
 func UInt32(assignmentVar *uint32, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt32Slice adds a new uint32 slice flag.
 // Specify the flag multiple times to fill the slice.
 func UInt32Slice(assignmentVar *[]uint32, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt16 adds a new uint16 flag
 func UInt16(assignmentVar *uint16, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt16Slice adds a new uint16 slice flag.
 // Specify the flag multiple times to fill the slice.
 func UInt16Slice(assignmentVar *[]uint16, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt8 adds a new uint8 flag
 func UInt8(assignmentVar *uint8, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // UInt8Slice adds a new uint8 slice flag.
 // Specify the flag multiple times to fill the slice.
 func UInt8Slice(assignmentVar *[]uint8, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int64 adds a new int64 flag
 func Int64(assignmentVar *int64, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int64Slice adds a new int64 slice flag.
 // Specify the flag multiple times to fill the slice.
 func Int64Slice(assignmentVar *[]int64, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int32 adds a new int32 flag
 func Int32(assignmentVar *int32, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int32Slice adds a new int32 slice flag.
 // Specify the flag multiple times to fill the slice.
 func Int32Slice(assignmentVar *[]int32, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int16 adds a new int16 flag
 func Int16(assignmentVar *int16, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int16Slice adds a new int16 slice flag.
 // Specify the flag multiple times to fill the slice.
 func Int16Slice(assignmentVar *[]int16, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int8 adds a new int8 flag
 func Int8(assignmentVar *int8, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // Int8Slice adds a new int8 slice flag.
 // Specify the flag multiple times to fill the slice.
 func Int8Slice(assignmentVar *[]int8, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // IP adds a new net.IP flag.
 func IP(assignmentVar *net.IP, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // IPSlice adds a new int8 slice flag.
 // Specify the flag multiple times to fill the slice.
 func IPSlice(assignmentVar *[]net.IP, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // HardwareAddr adds a new net.HardwareAddr flag.
 func HardwareAddr(assignmentVar *net.HardwareAddr, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // HardwareAddrSlice adds a new net.HardwareAddr slice flag.
 // Specify the flag multiple times to fill the slice.
 func HardwareAddrSlice(assignmentVar *[]net.HardwareAddr, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // IPMask adds a new net.IPMask flag. IPv4 Only.
 func IPMask(assignmentVar *net.IPMask, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // IPMaskSlice adds a new net.HardwareAddr slice flag. IPv4 only.
 // Specify the flag multiple times to fill the slice.
 func IPMaskSlice(assignmentVar *[]net.IPMask, shortName string, longName string, description string) {
-	DefaultParser.add(assignmentVar, shortName, longName, description)
+	DefaultParser.add(assignmentVar, shortName, longName, description, nil)
 }
 
 // AttachSubcommand adds a subcommand for parsing

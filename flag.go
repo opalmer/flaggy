@@ -20,6 +20,7 @@ type Flag struct {
 	AssignmentVar interface{}
 	defaultValue  string // the value (as a string), that was set by default before any parsing and assignment
 	parsed        bool   // indicates that this flag has already been parsed
+	Parse         func(s string) error
 }
 
 // HasName indicates that this flag's short or long name matches the
@@ -52,6 +53,10 @@ func (f *Flag) identifyAndAssignValue(value string) error {
 
 	debugPrint("attempting to assign value", value, "to flag", f.LongName)
 	f.rawValue = value // remember the raw value
+
+	if f.Parse != nil {
+		return f.Parse(value)
+	}
 
 	// depending on the type of the assignment variable, we convert the
 	// incoming string and assign it.  We only use pointers to variables
@@ -398,8 +403,9 @@ func parseArgWithValue(arg string) (key string, value string) {
 }
 
 // parseFlagToName parses a flag with space value down to a key name:
-//     --path -> path
-//     -p -> p
+//
+//	--path -> path
+//	-p -> p
 func parseFlagToName(arg string) string {
 	// remove minus from start
 	arg = strings.TrimLeft(arg, "-")
@@ -408,7 +414,8 @@ func parseFlagToName(arg string) string {
 }
 
 // collectAllNestedFlags recurses through the command tree to get all
-//     flags specified on a subcommand and its descending subcommands
+//
+//	flags specified on a subcommand and its descending subcommands
 func collectAllNestedFlags(sc *Subcommand) []*Flag {
 	fullList := sc.Flags
 	for _, sc := range sc.Subcommands {
@@ -443,6 +450,9 @@ func (f *Flag) returnAssignmentVarValueAsString() (string, error) {
 	debugPrint("returning current value of assignment var of flag", f.LongName)
 
 	var err error
+	if f.Parse != nil {
+		return "<generic>", nil
+	}
 
 	// depending on the type of the assignment variable, we convert the
 	// incoming string and assign it.  We only use pointers to variables
